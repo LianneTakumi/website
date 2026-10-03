@@ -2,13 +2,7 @@ import "dotenv/config";
 import express from "express";
 import { prisma } from "./lib/prisma";
 import authRoutes from "./routes/auth.routes";
-
-//import for testing the authentication middleware
-/*import {
-  authenticateToken,
-  type AuthenticatedRequest,
-} from "./middleware/auth.middleware";
-*/
+import profileRoutes from "./routes/profile.routes";
 
 const app = express();
 
@@ -16,6 +10,7 @@ const PORT = 5000;
 
 app.use(express.json());
 app.use("/api/auth", authRoutes);
+app.use("/api/profile", profileRoutes);
 
 app.get("/api/health", async (_req, res) => {
   try {
@@ -33,19 +28,6 @@ app.get("/api/health", async (_req, res) => {
     });
   }
 });
-
-//This is only for testing the authentication middleware. 
-// app.get(
-//   "/api/auth/test",
-//   authenticateToken,
-//   (req: AuthenticatedRequest, res) => {
-//     res.json({
-//       success: true,
-//       message: "Authentication successful",
-//       userId: req.userId,
-//     });
-//   }
-// );
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
