@@ -3,6 +3,7 @@ import express from "express";
 import { prisma } from "./lib/prisma";
 import authRoutes from "./routes/auth.routes";
 import profileRoutes from "./routes/profile.routes";
+import passwordResetRoutes from "./routes/password-reset.routes";
 
 const app = express();
 
@@ -11,6 +12,7 @@ const PORT = 5000;
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
+app.use("/api/auth", passwordResetRoutes);
 
 app.get("/api/health", async (_req, res) => {
   try {
