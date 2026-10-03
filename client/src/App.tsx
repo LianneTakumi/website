@@ -9,6 +9,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Layout from "./components/Layout";
 import Tasks from "./pages/Task";
+import Profile from "./pages/Profile";
 
 function ProtectedRoute({
   children,
@@ -41,6 +42,7 @@ function App() {
         >
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/tasks" element={<Tasks />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>
     </BrowserRouter>

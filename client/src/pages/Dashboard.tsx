@@ -28,9 +28,11 @@ function Dashboard() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-100 p-6">
-        <div className="rounded-lg bg-red-50 p-4 text-red-600">
-          {error}
+      <div className="min-h-screen bg-black p-6">
+        <div className="mx-auto max-w-6xl">
+          <div className="rounded-xl border border-red-900 bg-red-950/40 p-4 text-red-400">
+            {error}
+          </div>
         </div>
       </div>
     );
@@ -38,8 +40,10 @@ function Dashboard() {
 
   if (!stats) {
     return (
-      <div className="min-h-screen bg-gray-100 p-6">
-        <p className="text-gray-500">Loading dashboard...</p>
+      <div className="min-h-screen bg-black p-6">
+        <div className="mx-auto max-w-6xl">
+          <p className="text-gray-500">Loading dashboard...</p>
+        </div>
       </div>
     );
   }
@@ -68,27 +72,29 @@ function Dashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div className="min-h-screen bg-black p-6">
       <div className="mx-auto max-w-6xl">
-        <h1 className="text-3xl font-bold text-gray-900">
-          Dashboard
-        </h1>
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold text-white">
+            Dashboard
+          </h1>
 
-        <p className="mt-1 text-gray-500">
-          Here's an overview of your tasks.
-        </p>
+          <p className="mt-1 text-gray-400">
+            Here's an overview of your tasks.
+          </p>
+        </div>
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {cards.map((card) => (
             <div
               key={card.label}
-              className="rounded-xl bg-white p-5 shadow-sm"
+              className="rounded-2xl border border-gray-800 bg-gray-950 p-5 shadow-xl"
             >
               <p className="text-sm text-gray-500">
                 {card.label}
               </p>
 
-              <p className="mt-2 text-3xl font-bold text-gray-900">
+              <p className="mt-2 text-3xl font-bold text-white">
                 {card.value}
               </p>
             </div>

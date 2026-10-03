@@ -73,9 +73,7 @@ function Tasks() {
       description: task.description || "",
       status: task.status,
       priority: task.priority,
-      dueDate: task.dueDate
-        ? task.dueDate.slice(0, 10)
-        : "",
+      dueDate: task.dueDate ? task.dueDate.slice(0, 10) : "",
     });
 
     setSelectedTask(null);
@@ -88,9 +86,7 @@ function Tasks() {
     setForm(emptyForm);
   }
 
-  async function handleSubmit(
-    e: React.FormEvent
-  ) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
     setError("");
@@ -118,8 +114,7 @@ function Tasks() {
       await loadTasks();
     } catch (error: any) {
       setError(
-        error.response?.data?.message ||
-          "Unable to save task."
+        error.response?.data?.message || "Unable to save task."
       );
     } finally {
       setSaving(false);
@@ -152,49 +147,46 @@ function Tasks() {
       setSuccess("Task deleted successfully.");
     } catch (error: any) {
       setError(
-        error.response?.data?.message ||
-          "Unable to delete task."
+        error.response?.data?.message || "Unable to delete task."
       );
     }
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div className="min-h-screen bg-black p-6">
       <div className="mx-auto max-w-6xl">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">
+          <h1 className="text-3xl font-bold text-white">
             Tasks
           </h1>
 
-          <p className="mt-1 text-gray-500">
+          <p className="mt-1 text-gray-400">
             Create, manage, and track your tasks.
           </p>
         </div>
 
         {error && (
-          <div className="mb-4 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-600">
+          <div className="mb-4 rounded-lg border border-red-900 bg-red-950/40 px-4 py-3 text-sm text-red-400">
             {error}
           </div>
         )}
 
         {success && (
-          <div className="mb-4 rounded-lg bg-green-50 px-4 py-3 text-sm text-green-600">
+          <div className="mb-4 rounded-lg border border-green-900 bg-green-950/40 px-4 py-3 text-sm text-green-400">
             {success}
           </div>
         )}
 
         <div className="grid gap-6 lg:grid-cols-3">
-          <div className="rounded-xl bg-white p-6 shadow-sm">
-            <h2 className="text-xl font-semibold text-gray-900">
+          {/* Task Form */}
+          <div className="rounded-2xl border border-gray-800 bg-gray-950 p-6 shadow-xl">
+            <h2 className="text-xl font-semibold text-white">
               {editingTask ? "Edit Task" : "Create Task"}
             </h2>
 
-            <form
-              onSubmit={handleSubmit}
-              className="mt-5 space-y-4"
-            >
+            <form onSubmit={handleSubmit} className="mt-5 space-y-4">
               <div>
-                <label className="mb-1 block text-sm font-medium text-gray-700">
+                <label className="mb-1.5 block text-sm font-medium text-gray-300">
                   Title
                 </label>
 
@@ -202,13 +194,13 @@ function Tasks() {
                   name="title"
                   value={form.title}
                   onChange={handleChange}
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 outline-none focus:border-blue-500"
+                  className="w-full rounded-lg border border-gray-700 bg-gray-900 px-3 py-2.5 text-white outline-none placeholder:text-gray-600 focus:border-white focus:ring-1 focus:ring-white"
                   placeholder="Task title"
                 />
               </div>
 
               <div>
-                <label className="mb-1 block text-sm font-medium text-gray-700">
+                <label className="mb-1.5 block text-sm font-medium text-gray-300">
                   Description
                 </label>
 
@@ -217,13 +209,13 @@ function Tasks() {
                   value={form.description}
                   onChange={handleChange}
                   rows={4}
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 outline-none focus:border-blue-500"
+                  className="w-full rounded-lg border border-gray-700 bg-gray-900 px-3 py-2.5 text-white outline-none placeholder:text-gray-600 focus:border-white focus:ring-1 focus:ring-white"
                   placeholder="Task description"
                 />
               </div>
 
               <div>
-                <label className="mb-1 block text-sm font-medium text-gray-700">
+                <label className="mb-1.5 block text-sm font-medium text-gray-300">
                   Status
                 </label>
 
@@ -231,20 +223,16 @@ function Tasks() {
                   name="status"
                   value={form.status}
                   onChange={handleChange}
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2"
+                  className="w-full rounded-lg border border-gray-700 bg-gray-900 px-3 py-2.5 text-white outline-none focus:border-white"
                 >
                   <option value="To Do">To Do</option>
-                  <option value="In Progress">
-                    In Progress
-                  </option>
-                  <option value="Completed">
-                    Completed
-                  </option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Completed">Completed</option>
                 </select>
               </div>
 
               <div>
-                <label className="mb-1 block text-sm font-medium text-gray-700">
+                <label className="mb-1.5 block text-sm font-medium text-gray-300">
                   Priority
                 </label>
 
@@ -252,7 +240,7 @@ function Tasks() {
                   name="priority"
                   value={form.priority}
                   onChange={handleChange}
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2"
+                  className="w-full rounded-lg border border-gray-700 bg-gray-900 px-3 py-2.5 text-white outline-none focus:border-white"
                 >
                   <option value="Low">Low</option>
                   <option value="Medium">Medium</option>
@@ -261,7 +249,7 @@ function Tasks() {
               </div>
 
               <div>
-                <label className="mb-1 block text-sm font-medium text-gray-700">
+                <label className="mb-1.5 block text-sm font-medium text-gray-300">
                   Due Date
                 </label>
 
@@ -270,14 +258,14 @@ function Tasks() {
                   name="dueDate"
                   value={form.dueDate}
                   onChange={handleChange}
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2"
+                  className="w-full rounded-lg border border-gray-700 bg-gray-900 px-3 py-2.5 text-white outline-none focus:border-white"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={saving}
-                className="w-full rounded-lg bg-blue-600 px-4 py-2.5 font-medium text-white hover:bg-blue-700 disabled:opacity-60"
+                className="w-full rounded-lg bg-white px-4 py-2.5 font-semibold text-black transition hover:bg-gray-200 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {saving
                   ? "Saving..."
@@ -290,7 +278,7 @@ function Tasks() {
                 <button
                   type="button"
                   onClick={cancelEdit}
-                  className="w-full rounded-lg border border-gray-300 px-4 py-2.5 text-gray-700 hover:bg-gray-50"
+                  className="w-full rounded-lg border border-gray-700 px-4 py-2.5 text-gray-300 transition hover:bg-gray-900"
                 >
                   Cancel
                 </button>
@@ -298,35 +286,32 @@ function Tasks() {
             </form>
           </div>
 
+          {/* Task List */}
           <div className="lg:col-span-2">
-            <div className="rounded-xl bg-white p-6 shadow-sm">
+            <div className="rounded-2xl border border-gray-800 bg-gray-950 p-6 shadow-xl">
               <div className="grid gap-3 md:grid-cols-3">
                 <input
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search tasks..."
-                  className="rounded-lg border border-gray-300 px-3 py-2 outline-none focus:border-blue-500"
+                  className="rounded-lg border border-gray-700 bg-gray-900 px-3 py-2.5 text-white outline-none placeholder:text-gray-600 focus:border-white focus:ring-1 focus:ring-white"
                 />
 
                 <select
                   value={status}
                   onChange={(e) => setStatus(e.target.value)}
-                  className="rounded-lg border border-gray-300 px-3 py-2"
+                  className="rounded-lg border border-gray-700 bg-gray-900 px-3 py-2.5 text-white outline-none focus:border-white"
                 >
                   <option value="">All statuses</option>
                   <option value="To Do">To Do</option>
-                  <option value="In Progress">
-                    In Progress
-                  </option>
-                  <option value="Completed">
-                    Completed
-                  </option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Completed">Completed</option>
                 </select>
 
                 <select
                   value={priority}
                   onChange={(e) => setPriority(e.target.value)}
-                  className="rounded-lg border border-gray-300 px-3 py-2"
+                  className="rounded-lg border border-gray-700 bg-gray-900 px-3 py-2.5 text-white outline-none focus:border-white"
                 >
                   <option value="">All priorities</option>
                   <option value="Low">Low</option>
@@ -340,7 +325,7 @@ function Tasks() {
                   Loading tasks...
                 </p>
               ) : tasks.length === 0 ? (
-                <div className="mt-6 rounded-lg border border-dashed border-gray-300 p-8 text-center">
+                <div className="mt-6 rounded-lg border border-dashed border-gray-700 p-8 text-center">
                   <p className="text-gray-500">
                     No tasks found.
                   </p>
@@ -350,35 +335,32 @@ function Tasks() {
                   {tasks.map((task) => (
                     <div
                       key={task.id}
-                      className="rounded-lg border border-gray-200 p-4"
+                      className="rounded-xl border border-gray-800 bg-gray-900/60 p-4 transition hover:border-gray-700"
                     >
                       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                         <div>
                           <button
-                            onClick={() =>
-                              setSelectedTask(task)
-                            }
-                            className="text-left text-lg font-semibold text-gray-900 hover:text-blue-600"
+                            onClick={() => setSelectedTask(task)}
+                            className="text-left text-lg font-semibold text-white hover:text-gray-300"
                           >
                             {task.title}
                           </button>
 
-                          <p className="mt-1 text-sm text-gray-500">
-                            {task.description ||
-                              "No description"}
+                          <p className="mt-1 text-sm text-gray-400">
+                            {task.description || "No description"}
                           </p>
 
                           <div className="mt-3 flex flex-wrap gap-2 text-xs">
-                            <span className="rounded-full bg-gray-100 px-3 py-1">
+                            <span className="rounded-full border border-gray-700 bg-gray-800 px-3 py-1 text-gray-300">
                               {task.status}
                             </span>
 
-                            <span className="rounded-full bg-gray-100 px-3 py-1">
+                            <span className="rounded-full border border-gray-700 bg-gray-800 px-3 py-1 text-gray-300">
                               {task.priority}
                             </span>
 
                             {task.dueDate && (
-                              <span className="rounded-full bg-gray-100 px-3 py-1">
+                              <span className="rounded-full border border-gray-700 bg-gray-800 px-3 py-1 text-gray-300">
                                 Due{" "}
                                 {new Date(
                                   task.dueDate
@@ -391,16 +373,14 @@ function Tasks() {
                         <div className="flex gap-2">
                           <button
                             onClick={() => startEdit(task)}
-                            className="rounded-lg border border-gray-300 px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-50"
+                            className="rounded-lg border border-gray-700 px-3 py-1.5 text-sm text-gray-300 transition hover:bg-gray-800"
                           >
                             Edit
                           </button>
 
                           <button
-                            onClick={() =>
-                              handleDelete(task.id)
-                            }
-                            className="rounded-lg border border-red-200 px-3 py-1.5 text-sm text-red-600 hover:bg-red-50"
+                            onClick={() => handleDelete(task.id)}
+                            className="rounded-lg border border-red-900 px-3 py-1.5 text-sm text-red-400 transition hover:bg-red-950/50"
                           >
                             Delete
                           </button>
@@ -412,44 +392,45 @@ function Tasks() {
               )}
 
               {selectedTask && (
-                <div className="mt-6 rounded-lg bg-gray-50 p-5">
+                <div className="mt-6 rounded-xl border border-gray-800 bg-gray-900 p-5">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-semibold text-gray-900">
+                    <h3 className="text-lg font-semibold text-white">
                       Task Details
                     </h3>
 
                     <button
                       onClick={() => setSelectedTask(null)}
-                      className="text-sm text-gray-500 hover:text-gray-900"
+                      className="text-sm text-gray-500 hover:text-white"
                     >
                       Close
                     </button>
                   </div>
 
-                  <div className="mt-4 space-y-2 text-sm">
+                  <div className="mt-4 space-y-2 text-sm text-gray-300">
                     <p>
-                      <strong>Title:</strong>{" "}
+                      <strong className="text-white">Title:</strong>{" "}
                       {selectedTask.title}
                     </p>
 
                     <p>
-                      <strong>Description:</strong>{" "}
-                      {selectedTask.description ||
-                        "No description"}
+                      <strong className="text-white">
+                        Description:
+                      </strong>{" "}
+                      {selectedTask.description || "No description"}
                     </p>
 
                     <p>
-                      <strong>Status:</strong>{" "}
+                      <strong className="text-white">Status:</strong>{" "}
                       {selectedTask.status}
                     </p>
 
                     <p>
-                      <strong>Priority:</strong>{" "}
+                      <strong className="text-white">Priority:</strong>{" "}
                       {selectedTask.priority}
                     </p>
 
                     <p>
-                      <strong>Due Date:</strong>{" "}
+                      <strong className="text-white">Due Date:</strong>{" "}
                       {selectedTask.dueDate
                         ? new Date(
                             selectedTask.dueDate
@@ -458,14 +439,14 @@ function Tasks() {
                     </p>
 
                     <p>
-                      <strong>Created:</strong>{" "}
+                      <strong className="text-white">Created:</strong>{" "}
                       {new Date(
                         selectedTask.createdAt
                       ).toLocaleString()}
                     </p>
 
                     <p>
-                      <strong>Updated:</strong>{" "}
+                      <strong className="text-white">Updated:</strong>{" "}
                       {new Date(
                         selectedTask.updatedAt
                       ).toLocaleString()}
